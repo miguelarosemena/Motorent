@@ -5,9 +5,13 @@
  */
 package com.ciclo3.motorent.service;
 
+import com.ciclo3.motorent.model.Client;
+import com.ciclo3.motorent.model.ReportClient;
 import com.ciclo3.motorent.model.Reservation;
 import com.ciclo3.motorent.model.Status;
 import com.ciclo3.motorent.repository.ReservationRepository;
+import com.ciclo3.motorent.repository.ClientRepository;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -85,6 +89,35 @@ public class ReservationService {
         status.setCompleted(contF);
         status.setCancelled(contC);
         return status;
+    }
+    
+    public List<ReportClient> getReportClient(){
+        List<ReportClient> repoclient= new ArrayList<ReportClient>();
+        List<Client> clients=clientRepository.getAll();
+        int total=0;
+        for (Client cli:clients){
+            for(Reservation res:cli.getReservation()){
+                total=total+1;
+            }
+            ReportClient reportclient = new ReportClient();
+            reportclient.setTotal(total);
+            reportclient.setClient(cli);
+            reportclient.add(reportclient);
+            total=0;
+        }
+        return repoclient;       
+    }
+    
+    
+    public List<Reservation> getReportDates(Date date1, Date date2){
+        List<Reservation> reservations= reservationRepository.getAll();
+        List<Reservation> reservationDate= new ArrayList<Reservation>();
+        for(Reservation res:reservations){
+            if(date1.compareTo(res.getStartDate())*res.getStartDate().compareTo(date2)>=0){
+                reservationDate.add(res);
+            }
+        }
+        return reservationDate;
     }
 
 }
