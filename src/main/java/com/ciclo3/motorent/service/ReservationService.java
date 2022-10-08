@@ -6,6 +6,7 @@
 package com.ciclo3.motorent.service;
 
 import com.ciclo3.motorent.model.Reservation;
+import com.ciclo3.motorent.model.Status;
 import com.ciclo3.motorent.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,6 +68,23 @@ public class ReservationService {
         }
         return flag;
 
+    }
+    
+    public Status getStatus(){
+        Status status = new Status();
+        List<Reservation> reservations=reservationRepository.getAll();
+        int contF=0;
+        int contC=0;
+        for(Reservation res:reservations){
+            if(res.getStatus().equals("completed")){
+                contF=contF+1;
+            }else if(res.getStatus().equals("cancelled")){
+                contC=contC+1;
+            }
+        }
+        status.setCompleted(contF);
+        status.setCancelled(contC);
+        return status;
     }
 
 }
