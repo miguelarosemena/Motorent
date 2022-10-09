@@ -19,11 +19,11 @@ public class Motorbike implements Serializable {
     @Column(unique=true,nullable=false)
     private Integer id;
     @Column(length=45,unique=false,nullable=false)
+    private String name;
+    @Column(length=45,unique=false,nullable=false)
     private String brand;
     @Column(name="`year`",length=4,unique=false,nullable=false)
     private Integer year;
-    @Column(length=45,unique=false,nullable=false)
-    private String name;
     @Column(length=250,unique=false,nullable=false)
     private String description;
     
@@ -33,12 +33,13 @@ public class Motorbike implements Serializable {
     private Category category;
     
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "motorbike")
-    @JsonIgnoreProperties({"motorbike","client"})
+    @JsonIgnoreProperties("motorbike")
     private List<Message> messages;
+    
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "motorbike")
     @JsonIgnoreProperties({"motorbike","messages"})
-    public List<Reservation> reservation;
+    public List<Reservation> reservations;
 
     public Integer getId() {
         return id;
@@ -96,15 +97,13 @@ public class Motorbike implements Serializable {
         this.messages = messages;
     }
 
-    public List<Reservation> getReservation() {
-        return reservation;
+    public List<Reservation> getReservations() {
+        return reservations;
     }
 
-    public void setReservation(List<Reservation> reservation) {
-        this.reservation = reservation;
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
-
-    
 
    
 }
