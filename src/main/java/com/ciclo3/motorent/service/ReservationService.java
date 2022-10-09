@@ -96,7 +96,7 @@ public class ReservationService {
         List<Client> clients=clientRepository.getAll();
         int total=0;
         for (Client cli:clients){
-            for(Reservation res:cli.getReservation()){
+            for(Reservation res:cli.getReservations()){
                 total=total+1;
             }
             ReportClient reportclient = new ReportClient();
