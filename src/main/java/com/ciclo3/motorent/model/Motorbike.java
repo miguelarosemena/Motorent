@@ -29,11 +29,11 @@ public class Motorbike implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "categoryId")
-    @JsonIgnoreProperties("motorbike")
+    @JsonIgnoreProperties("motorbikes")
     private Category category;
     
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "motorbike")
-    @JsonIgnoreProperties("motorbike")
+    @JsonIgnoreProperties({"motorbike","client"})
     private List<Message> messages;
     
 
@@ -47,6 +47,14 @@ public class Motorbike implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getBrand() {
@@ -63,14 +71,6 @@ public class Motorbike implements Serializable {
 
     public void setYear(Integer year) {
         this.year = year;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDescription() {
@@ -105,5 +105,5 @@ public class Motorbike implements Serializable {
         this.reservations = reservations;
     }
 
-   
+
 }

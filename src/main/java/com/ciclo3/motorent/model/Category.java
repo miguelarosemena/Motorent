@@ -26,7 +26,6 @@ public class Category implements Serializable {
     @JsonIgnoreProperties("category")
     private List<Motorbike> motorbikes;
 
-
     public Integer getId() {
         return id;
     }
@@ -58,6 +57,8 @@ public class Category implements Serializable {
     public void setMotorbikes(List<Motorbike> motorbikes) {
         this.motorbikes = motorbikes;
     }
+
+
 
 
     

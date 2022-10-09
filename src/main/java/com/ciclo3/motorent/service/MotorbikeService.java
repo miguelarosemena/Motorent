@@ -22,9 +22,11 @@ public class MotorbikeService {
     public List<Motorbike> getAll(){
         return MotorbikeRepository.getAll();
     }
+    
     public Optional<Motorbike> getMotorbike(int id){
         return MotorbikeRepository.getMotorbike(id);
     }
+    
     public Motorbike save(Motorbike p){
         if(p.getId()==null){
             return MotorbikeRepository.save(p);
@@ -42,7 +44,7 @@ public class MotorbikeService {
             Optional<Motorbike> q = MotorbikeRepository.getMotorbike(p.getId());
             if(q.isPresent()){
                 if(p.getBrand()!=null){
-                    q.get().setName(p.getBrand());
+                    q.get().setBrand(p.getBrand());
                 }
                 if(p.getYear()!=null){
                     q.get().setYear(p.getYear());
@@ -51,7 +53,7 @@ public class MotorbikeService {
                     q.get().setName(p.getName());
                 }
                 if(p.getDescription()!=null){
-                    q.get().setName(p.getDescription());
+                    q.get().setDescription(p.getDescription());
                 }
 
                 MotorbikeRepository.save(q.get());
