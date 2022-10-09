@@ -12,6 +12,7 @@ import com.ciclo3.motorent.model.Status;
 import com.ciclo3.motorent.repository.ReservationRepository;
 import com.ciclo3.motorent.repository.ClientRepository;
 import java.util.ArrayList;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +21,11 @@ import java.util.Optional;
 
 @Service
 public class ReservationService {
-     @Autowired
+    @Autowired
     private ReservationRepository reservationRepository;
-
+    @Autowired
+    private ClientRepository clientRepository;
+    
     public List<Reservation> getAll(){
         return reservationRepository.getAll();
     }
@@ -102,7 +105,7 @@ public class ReservationService {
             ReportClient reportclient = new ReportClient();
             reportclient.setTotal(total);
             reportclient.setClient(cli);
-            reportclient.add(reportclient);
+            repoclient.add(reportclient);
             total=0;
         }
         return repoclient;       
