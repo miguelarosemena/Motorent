@@ -18,21 +18,22 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique=true,nullable=false)
     private Integer idClient;
+    @Column(length=45,unique=false,nullable=false)
+    private String email;
+    @Column(length=45,unique=false,nullable=false)
+    private String password;
     @Column(length=250,unique=false,nullable=false)
     private String name;
     private Integer age;
-    @Column(length=45,unique=false,nullable=false)
-    private String password;
-    @Column(length=45,unique=false,nullable=false)
-    private String email;
+        
     
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
-    @JsonIgnoreProperties("client")
+    @JsonIgnoreProperties({"client","reservation"})
     public List<Message>messages;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
     @JsonIgnoreProperties("client")
-    public List<Reservation>reservation;
+    public List<Reservation>reservations;
 
     public Integer getIdClient() {
         return idClient;
@@ -82,13 +83,15 @@ public class Client implements Serializable {
         this.messages = messages;
     }
 
-    public List<Reservation> getReservation() {
-        return reservation;
+    public List<Reservation> getReservations() {
+        return reservations;
     }
 
-    public void setReservation(List<Reservation> reservation) {
-        this.reservation = reservation;
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
+
+
     
 
     

@@ -22,12 +22,12 @@ public class Message implements Serializable{
     
     @ManyToOne
     @JoinColumn(name="idMoto")
-    @JsonIgnoreProperties({"messages","reservation"})
+    @JsonIgnoreProperties({"messages","reservations"})
     private Motorbike motorbike;
 
     @ManyToOne
     @JoinColumn(name="idClient")
-    @JsonIgnoreProperties({"messages","reservation"})
+    @JsonIgnoreProperties({"messages","reservations"})
     private Client client;
     
 
@@ -47,11 +47,11 @@ public class Message implements Serializable{
         this.messageText = messageText;
     }
 
-    public Motorbike getMoto() {
+    public Motorbike getMotorbike() {
         return motorbike;
     }
 
-    public void setMoto(Motorbike moto) {
+    public void setMotorbike(Motorbike motorbike) {
         this.motorbike = motorbike;
     }
 
@@ -62,7 +62,8 @@ public class Message implements Serializable{
     public void setClient(Client client) {
         this.client = client;
     }
+
    
-    
+
     
 }

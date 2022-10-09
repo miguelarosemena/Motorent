@@ -17,34 +17,34 @@ import java.util.Optional;
 @RequestMapping("/api/Motorbike")
 public class MotorbikeController {
     @Autowired
-    private MotorbikeService motoService;
+    private MotorbikeService motorbikeService;
 
     @GetMapping("/all")
     public List<Motorbike> getAll(){
-        return motoService.getAll();
+        return motorbikeService.getAll();
     }
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Motorbike save(@RequestBody  Motorbike c){
-        return motoService.save(c);
+        return motorbikeService.save(c);
     }
     
     
     @GetMapping("/(id)")
     public Optional<Motorbike> getMotorbike(@PathVariable("id") int idMoto){
-        return motoService.getMotorbike(idMoto);
+        return motorbikeService.getMotorbike(idMoto);
     }
     
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Motorbike update(@RequestBody Motorbike motorbike){
-        return motoService.update(motorbike);
+        return motorbikeService.update(motorbike);
     }
         
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable int id){
-        return motoService.delete(id);
+        return motorbikeService.delete(id);
     }
 
 }
