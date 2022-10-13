@@ -14,6 +14,10 @@ import java.util.List;
 @Entity
 @Table(name = "motorbike")
 public class Motorbike implements Serializable {
+/*
+ * Definición de atributos de la entidad
+    El id se usa para indicar la llave principal, autoincremental
+ */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique=true,nullable=false)
@@ -26,12 +30,17 @@ public class Motorbike implements Serializable {
     private Integer year;
     @Column(length=250,unique=false,nullable=false)
     private String description;
-    
+
+/*
+ * Relación de muchos a uno
+ */    
     @ManyToOne
     @JoinColumn(name = "categoryId")
     @JsonIgnoreProperties("motorbikes")
     private Category category;
-    
+/*
+ * Relación de uno a mucho, ojo con los plurales
+ */   
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "motorbike")
     @JsonIgnoreProperties({"motorbike","client"})
     private List<Message> messages;
@@ -41,6 +50,9 @@ public class Motorbike implements Serializable {
     @JsonIgnoreProperties({"motorbike","messages"})
     public List<Reservation> reservations;
 
+ /*
+ * Getters and Setters
+ */ 
     public Integer getId() {
         return id;
     }

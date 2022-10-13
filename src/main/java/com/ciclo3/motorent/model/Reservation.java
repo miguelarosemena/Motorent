@@ -12,7 +12,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-
+/*
+ * Definir atributos
+ */
 @Entity
 @Table(name = "reservation")
 public class Reservation implements Serializable{
@@ -26,7 +28,9 @@ public class Reservation implements Serializable{
     private Date devolutionDate;
     private String status="created";
 
-    
+/*
+ * Relaciones
+ */    
     @ManyToOne
     @JoinColumn(name = "idMoto")
     @JsonIgnoreProperties("reservations")
@@ -97,9 +101,6 @@ public class Reservation implements Serializable{
     public void setScore(Score score) {
         this.score = score;
     }
-
-
-
 
 
 }
